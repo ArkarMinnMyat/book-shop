@@ -60,3 +60,8 @@ body{
     opacity: 0.3;
 }
 
+#footer .nav-link{
+    text-decoration: none !important;
+    color: white !important;
+}
+
