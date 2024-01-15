@@ -12,23 +12,25 @@
                             <h4>Register Page</h4>
                         </div>
                         <div class="card-body">
-                            <form th:action="@{/auth/save-customer}" th:object="${customer}" method="post">
+                            <!--     public Customer(String customerName, String email, String address, String phoneNumber)               -->
+                            <form th:action="@{/save-customer}" th:object="${customer}"
+                                  method="post">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Customer Name</label>
-                                            <input type="text" th:field="*{name}" class="form-control">
+                                            <input type="text" th:field="*{customerName}" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Email</label>
-                                            <input type="email" th:field="*{email}" class="form-control">
+                                            <input type="text" th:field="*{email}" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Phone Number</label>
+                                            <label class="form-label">PhoneNumber</label>
                                             <input type="text" th:field="*{phoneNumber}" class="form-control">
                                         </div>
                                     </div>
@@ -37,7 +39,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Password</label>
-                                            <input type="password" th:field="*{password}" class="form-control">
+                                            <input type="text" th:field="*{password}" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -47,21 +49,24 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="mb-3">
-                                    <label class="form-label">Billing Address</label>
+                                    <label class="form-label">BillingAddress</label>
                                     <input type="text" name="billingAddress" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Shipping Address</label>
+                                    <label class="form-label">ShippingAddress</label>
                                     <input type="text" name="shippingAddress" class="form-control">
                                 </div>
+
                                 <div class="mb-3">
-                                    <label class="form-label">Payment Method</label>
-                                    <select name="paymentMethod" class="form-select" >
-                                        <option th:each="s : ${T(com.example.bookshop.entity.PaymentMethod).values()}" th:value="${s}" th:text="${s}"></option>
+                                    <label class="form-label">PaymentMethod</label>
+                                    <select class="form-select" name="payment">
+                                        <option th:each=" s : ${T(com.example.bookshop.entity.PaymentMethod).values()}"
+                                                th:value="${s}" th:text="${s}"></option>
                                     </select>
                                 </div>
-                                <input type="submit" value="Register" class="btn btn-primary" style="width: 50%">
+                                <input type="submit" class="btn btn-primary" value="Register">
                             </form>
                         </div>
                     </div>

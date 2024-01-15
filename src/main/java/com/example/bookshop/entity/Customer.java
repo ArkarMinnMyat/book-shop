@@ -19,25 +19,16 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(unique = true)
-    private String name;
+    private String customerName;
     private String password;
     private String email;
     private String address;
     private String phoneNumber;
-
-    public Customer(String name,String email, String address, String phoneNumber) {
-        this.name = name;
-        this.email = email;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-    }
-
     @OneToMany(mappedBy = "customer")
     private List<Order> orders=
             new ArrayList<>();
-
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles =
+    private Set<Role> roles=
             new HashSet<>();
 
     public void addRole(Role role){
@@ -50,11 +41,18 @@ public class Customer {
         orders.add(order);
     }
 
+    public Customer(String customerName, String email, String address, String phoneNumber) {
+        this.customerName = customerName;
+        this.email = email;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", customerName='" + customerName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +

@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class SecurityCustomer implements UserDetails {
-
     private final Customer customer;
 
     public SecurityCustomer(Customer customer) {
@@ -31,7 +30,7 @@ public class SecurityCustomer implements UserDetails {
 
     @Override
     public String getUsername() {
-        return customer.getName();
+        return customer.getCustomerName();
     }
 
     @Override

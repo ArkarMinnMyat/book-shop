@@ -20,35 +20,36 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @RequestMapping("/book")
 public class BookController {
-    private final BookService bookService;
-    private final CartService cartService;
 
+    private final BookService bookService;
+    private final CartService  cartService;
+
+    //book/list-books
     @GetMapping("/list-books")
     public String listBooks(Model model){
         model.addAttribute("books",
                 bookService.listBook());
         return "listbooks";
     }
-
     @ModelAttribute("cartSize")
     public Integer cartSize(){
         return cartService.cartSize();
     }
-
-    //book/book-details?id=1&isbn=ISBN=1234
+    //book/book-details?id=1&isbn=ISBN-1234
     @GetMapping("/book-details")
-    public String bookDetails(@RequestParam("id") Integer id,
-                              @RequestParam("isbn") String isbn,
-                              Model model){
-        BookId bookId = null;
-        if (Objects.nonNull(id) && Objects.nonNull(isbn)){
-            bookId = new BookId();
+    public String bookDetails(@RequestParam("id")Integer id,
+                              @RequestParam("isbn")String isbn,Model model){
+        BookId bookId=null;
+        if(Objects.nonNull(id) && Objects.nonNull(isbn)){
+            bookId=new BookId();
             bookId.setId(id);
             bookId.setIsbn(isbn);
-        }else {
+        }
+        else{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        model.addAttribute("book",bookService.findBookById(bookId));
+        model.addAttribute("book",
+                bookService.findBookById(bookId));
         return "bookdetails";
     }
 
